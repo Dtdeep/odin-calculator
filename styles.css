@@ -1,0 +1,20 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+.calculator{
+    background-color: #4c8cb0;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 600px;
+}
+
+.calculator-body{
+    background-color: orange;
+    
+}
+
+.calculator-display{
+    background-color: red;
+}
