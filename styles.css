@@ -16,11 +16,18 @@ body{
     width: 500px;
     height: 600px;
 }
+
+.calculator p{
+    margin-left: auto;
+    margin-top: 10px;
+}
+
 .head-header{
     display: flex;
     width: 100%;
     margin-bottom: 20px;
 }
+
 .solar-panel{
     width: 120px;
     height: 27px;
@@ -28,14 +35,12 @@ body{
     margin-left: auto;
 }
 
-
-
 .calculator-body{
-    background-color: orange;
+    background-color: green;
     width: 100%;
     height: 400px;
-
-
+    display: flex;
+    flex-direction: column;
 }
 .calculator-head{
     width: 100%;
@@ -45,7 +50,6 @@ body{
     justify-content: center;
     flex-direction: column;
     padding: 0px 50px 0px 50px;
-
 }
 
 .calculator-display{
@@ -58,5 +62,32 @@ body{
 }
 
 .calculator-display h1{
-        font-size: 65px;
+     font-size: 65px;
+}
+
+.taskManagers{
+    display: flex;
+    width: 500px;
+}
+
+.nums-operator{
+    display: flex;
+}
+
+.calculator-operators{
+    width: 100px;
+}
+
+.calculator-contents{
+    display: flex;
+    flex-wrap: wrap;
+    width: 375px;
+
+}
+
+.calculator-contents div, .calculator-operators div, .taskManagers div {
+    width: 125px;
+    height: 80px;
+    background-color: red;
+    border: #4c8cb0 solid 1px;
 }
