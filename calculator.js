@@ -1,9 +1,10 @@
 let num1 = "";
 let num2 = "";
 let operator = "";
+let answer = "";
+
+const displayDigit = document.querySelector(".display-digit");
 const calculatorBody = document.querySelector(".calculator-body");
-
-
 
 const add  = (addendOne, addendTwo) => {
     return +addendOne + +addendTwo
@@ -18,129 +19,109 @@ const multiply = (multiplicand, multiplier) => {
 }
 
 const divide = (dividend, divisor) =>{
-    return dividend / divisor;
+    if(divisor == 0){
+        alert("Cannot divide by 0 bro")
+    }else{
+        return dividend / divisor;
+    }
+    
 }
 
 const operate = (operator,num1,num2)=>{
     switch(operator){
         case "+":
-            add(num1,num2);
-            break;
+            return add(num1,num2);
         case "-":
-            subtract(num1,num2);
-            break;
+            return subtract(num1,num2);
         case "x":
-            multiply(num1,num2);
-            break;
+            return multiply(num1,num2);
+   
         case "/":
-            divide(num1,num2);
-            break;
+            return divide(num1,num2);
     }
 }
 
 calculatorBody.addEventListener("click", (event)=>{
     const targetContent = event.target.textContent;
+    const targetClass = event.target.className;
+    if(targetClass == "number"){
+        if(targetContent == "." && num1.includes(".") && !operator){
+        }
+        else if(!operator){
+            num1 += targetContent;
+            displayDigit.textContent = num1;
+            console.log(num1);
+        } else if(targetContent == "." && num2.includes(".") && operator){
+        }else{
+            num2 += targetContent;
+            displayDigit.textContent = num2;
+            console.log(num2);
+        }
+    }
+
+    if(targetClass == "operator"){
+        if(operator && num1 && num2){
+            answer = operate(operator, num1,num2);
+            num2 = "";
+            num1 = parseFloat(answer.toFixed(2));
+            operator = targetContent;
+            displayDigit.textContent = num1;
+        }else if (!num1){
+            
+        } else{
+            operator = targetContent;
+        }
+        console.log(operator);
+    }
+
     switch(targetContent){
-        case "00":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "1":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "2":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "3":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "4":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "5":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "6":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "7":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "8":
-            if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "9":
-           if(!operator){
-                num1 += targetContent;
-                console.log(num1)
-            } else{
-                num2 += targetContent;
-                console.log(num2)
-            }
-            break;
-        case "+":
-            operator = "+";
-            break;
         case "=":
-            console.log(num1, num2, operator)
-            if(operator == "+"){
-                console.log(add(num1,num2));
+            if(num1 && num2 && operator){
+                console.log(operator, num1, num2)
+                answer = operate(operator, num1,num2);
+                console.log(parseFloat(answer.toFixed(2)));
                 operator = "";
+                num2 = "";
+                num1 = "";
+                displayDigit.textContent = parseFloat(answer.toFixed(2));
             }
             break;
-        
+        case "CA":
+            operator = "";
+            num1 = "";
+            num2 = "";
+            answer = "";
+            displayDigit.textContent = "";
+            break;
+        case "DEL":
+            if(!operator){
+                num1 = num1.slice(0,-1);
+                displayDigit.textContent = num1;
+            } else{
+                num2 = num2.slice(0,-1);
+                displayDigit.textContent = num2;
+            }
+            break;
+        case "ANS":
+            if(!operator){
+                num1 = answer;
+                displayDigit.textContent = num1;
+                console.log(num1);
+            } else{
+                num2 = answer;
+                displayDigit.textContent = num2;
+                console.log(num2);
+            }
+            break;
+        case "ϖ":
+            if(!operator){
+                num1 = 3.14;
+                displayDigit.textContent = num1;
+                console.log(num1);
+            } else{
+                num2 = 3.14;
+                displayDigit.textContent = num2;
+                console.log(num2);
+            }
     }
 })
