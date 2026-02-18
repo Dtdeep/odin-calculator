@@ -45,6 +45,7 @@ calculatorBody.addEventListener("click", (event)=>{
     const targetContent = event.target.textContent;
     const targetClass = event.target.className;
     if(targetClass == "number"){
+
         if(targetContent == "." && num1.includes(".") && !operator){
         }
         else if(!operator){
@@ -66,8 +67,9 @@ calculatorBody.addEventListener("click", (event)=>{
             num1 = parseFloat(answer.toFixed(2));
             operator = targetContent;
             displayDigit.textContent = num1;
-        }else if (!num1){
-            
+        }else if (!num1 && displayDigit.textContent){
+            num1 = displayDigit.textContent;
+            operator = targetContent;
         } else{
             operator = targetContent;
         }
@@ -82,7 +84,7 @@ calculatorBody.addEventListener("click", (event)=>{
                 console.log(parseFloat(answer.toFixed(2)));
                 operator = "";
                 num2 = "";
-                num1 = "";
+                num1 =  "";
                 displayDigit.textContent = parseFloat(answer.toFixed(2));
             }
             break;
@@ -125,3 +127,6 @@ calculatorBody.addEventListener("click", (event)=>{
             }
     }
 })
+
+
+//after the 
