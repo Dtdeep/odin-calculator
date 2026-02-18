@@ -5,6 +5,7 @@ let answer = "";
 
 const displayDigit = document.querySelector(".display-digit");
 const calculatorBody = document.querySelector(".calculator-body");
+const body = document.querySelector("body");
 
 const add  = (addendOne, addendTwo) => {
     return +addendOne + +addendTwo
@@ -41,47 +42,51 @@ const operate = (operator,num1,num2)=>{
     }
 }
 
-calculatorBody.addEventListener("click", (event)=>{
-    const targetContent = event.target.textContent;
-    const targetClass = event.target.className;
-    if(targetClass == "number"){
+//Here usually the if else is for knowing whether to put the number in num1 or in num2
+const calculatorFunction = (content)=>{
+    const operatorList = ["/","*","-","+"]
+    const isNumber = !isNaN(content);
 
-        if(targetContent == "." && num1.includes(".") && !operator){
+    if(isNumber){
+        const num1HasDot = content == "." && num1.includes(".") && !operator;
+        const num2HasDot = content == "." && num2.includes(".") && operator;
+        if(num1HasDot){
+            //Do nothing for num1 if it already has a period
         }
         else if(!operator){
-            num1 += targetContent;
+            num1 += content;
             displayDigit.textContent = num1;
-            console.log(num1);
-        } else if(targetContent == "." && num2.includes(".") && operator){
+        } else if(num2HasDot){
+            //Do nothing for num2
         }else{
-            num2 += targetContent;
+            num2 += content;
             displayDigit.textContent = num2;
             console.log(num2);
         }
     }
 
-    if(targetClass == "operator"){
+    if(operatorList.includes(content)){
         if(operator && num1 && num2){
             answer = operate(operator, num1,num2);
             num2 = "";
             num1 = parseFloat(answer.toFixed(2));
-            operator = targetContent;
+            operator = content;
             displayDigit.textContent = num1;
+            //Operate the two numbers and make it as num1 then put an operator
         }else if (!num1 && displayDigit.textContent){
             num1 = displayDigit.textContent;
-            operator = targetContent;
+            operator = content;
+            //Clicking an operator will operate the current display as num1
         } else{
-            operator = targetContent;
+            operator = content;
         }
         console.log(operator);
     }
 
-    switch(targetContent){
+    switch(content){
         case "=":
             if(num1 && num2 && operator){
-                console.log(operator, num1, num2)
                 answer = operate(operator, num1,num2);
-                console.log(parseFloat(answer.toFixed(2)));
                 operator = "";
                 num2 = "";
                 num1 =  "";
@@ -126,7 +131,21 @@ calculatorBody.addEventListener("click", (event)=>{
                 console.log(num2);
             }
     }
-})
+}
 
+calculatorBody.addEventListener("click", (event)=>{
+    const targetContent = event.target.textContent;
+    calculatorFunction(targetContent);
+});
 
-//after the 
+body.addEventListener("keydown", (event)=>{
+    let eventKey = event.key;
+    switch(eventKey){
+        case "Enter":
+            eventKey = "=";
+            break;
+        case "Backspace":
+            eventKey = "DEL"
+    }
+    calculatorFunction(eventKey);
+});
