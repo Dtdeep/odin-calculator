@@ -34,7 +34,7 @@ const operate = (operator,num1,num2)=>{
             return add(num1,num2);
         case "-":
             return subtract(num1,num2);
-        case "x":
+        case "*":
             return multiply(num1,num2);
    
         case "/":
@@ -45,9 +45,9 @@ const operate = (operator,num1,num2)=>{
 //Here usually the if else is for knowing whether to put the number in num1 or in num2
 const calculatorFunction = (content)=>{
     const operatorList = ["/","*","-","+"]
-    const isNumber = !isNaN(content);
+    const isContentNumber = !isNaN(content) || content == ".";
 
-    if(isNumber){
+    if(isContentNumber){
         const num1HasDot = content == "." && num1.includes(".") && !operator;
         const num2HasDot = content == "." && num2.includes(".") && operator;
         if(num1HasDot){
@@ -67,9 +67,9 @@ const calculatorFunction = (content)=>{
 
     if(operatorList.includes(content)){
         if(operator && num1 && num2){
-            answer = operate(operator, num1,num2);
+            answer = parseFloat(operate(operator, num1,num2).toFixed(2));
             num2 = "";
-            num1 = parseFloat(answer.toFixed(2));
+            num1 = answer;
             operator = content;
             displayDigit.textContent = num1;
             //Operate the two numbers and make it as num1 then put an operator
@@ -86,26 +86,29 @@ const calculatorFunction = (content)=>{
     switch(content){
         case "=":
             if(num1 && num2 && operator){
-                answer = operate(operator, num1,num2);
+                answer = parseFloat(operate(operator, num1,num2).toFixed(2));
                 operator = "";
                 num2 = "";
                 num1 =  "";
-                displayDigit.textContent = parseFloat(answer.toFixed(2));
+                displayDigit.textContent = answer;
+                console.log(answer, "is the answer");
             }
             break;
         case "CA":
             operator = "";
             num1 = "";
             num2 = "";
-            answer = "";
             displayDigit.textContent = "";
             break;
         case "DEL":
+            if(!num1 && displayDigit.textContent){
+                num1 = displayDigit.textContent;
+            }
             if(!operator){
-                num1 = num1.slice(0,-1);
+                num1 = num1.toString().slice(0,-1);
                 displayDigit.textContent = num1;
             } else{
-                num2 = num2.slice(0,-1);
+                num2 = num2.toString().slice(0,-1);
                 displayDigit.textContent = num2;
             }
             break;

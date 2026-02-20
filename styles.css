@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 body{
@@ -36,11 +37,12 @@ body{
 }
 
 .calculator-body{
-    background-color: green;
+    background-color: #72acce;
     width: 100%;
     height: 400px;
     display: flex;
-    flex-direction: column;
+    padding:10px;
+    justify-content: space-evenly;
 }
 .calculator-head{
     width: 100%;
@@ -65,29 +67,23 @@ body{
      font-size: 65px;
 }
 
-.taskManagers{
+
+.calculator-content-column{
+    width: 105px;
     display: flex;
-    width: 500px;
-}
-
-.nums-operator{
-    display: flex;
-}
-
-.calculator-operators{
-    width: 100px;
-}
-
-.calculator-contents{
-    display: flex;
-    flex-wrap: wrap;
-    width: 375px;
+    flex-direction: column;
+    justify-content: space-evenly;
 
 }
 
-.calculator-contents div, .calculator-operators div, .taskManagers div {
-    width: 125px;
-    height: 80px;
+.calculator-content-column div {
+    width: 105px;
+    height: 70px;
     background-color: red;
     border: #4c8cb0 solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:  35px;
+    border-radius: 25%;
 }
