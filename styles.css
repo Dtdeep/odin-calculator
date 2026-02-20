@@ -5,6 +5,12 @@
     user-select: none;
 }
 
+@font-face {
+  font-family: "digital-clock-font";
+  src: url("digital-7-mono.ttf");
+}
+
+
 body{
     display: flex;
     justify-content: center;
@@ -16,6 +22,8 @@ body{
     align-items: center;
     width: 500px;
     height: 600px;
+    margin-top: 25px;
+    border-radius: 5%;
 }
 
 .calculator p{
@@ -23,26 +31,42 @@ body{
     margin-top: 10px;
 }
 
+
+
 .head-header{
     display: flex;
     width: 100%;
+    margin-top: 15px;
     margin-bottom: 20px;
+    color: white;
+    font-family: Impact, sans-serif;
+    letter-spacing: 1px;
+
+
+}
+
+.calculator-head p:first-of-type{
+    font-family: Impact, sans-serif;
+    color: white;
+    letter-spacing: 1px;
 }
 
 .solar-panel{
     width: 120px;
     height: 27px;
-    background-color: red;
+    background-color: #4B4545;
     margin-left: auto;
+    border-radius: 5px;
 }
 
 .calculator-body{
     background-color: #72acce;
-    width: 100%;
-    height: 400px;
+    width: 95%;
+    height: 390px;
     display: flex;
-    padding:10px;
+    padding: 10px;
     justify-content: space-evenly;
+    border-radius: 5%;
 }
 .calculator-head{
     width: 100%;
@@ -51,16 +75,21 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0px 50px 0px 50px;
+    padding: 0px 40px 0px 40px;
 }
 
 .calculator-display{
-    background-color: red;
+    background-color: #D4E2E3;
     width: 100%;
     height: 100px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    border-radius: 10px;
+    font-family: "digital-clock-font";
+    overflow: hidden;
+    padding-right:10px;
+
 }
 
 .calculator-display h1{
@@ -77,13 +106,20 @@ body{
 }
 
 .calculator-content-column div {
-    width: 105px;
-    height: 70px;
-    background-color: red;
+    width: 95px;
+    height: 65px;
+    color: white;
+    background-color: #42617E;
     border: #4c8cb0 solid 1px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size:  35px;
-    border-radius: 25%;
+    font-size:  30px;
+    border-radius: 30%;
+    font-family: "Helvetica Rounded Bold", "Arial Rounded MT Bold", Arial, sans-serif;
+
+}
+
+.calculator-content-column div:active{
+    background-color: #5B94B2;
 }
